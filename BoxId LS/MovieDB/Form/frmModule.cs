@@ -34,7 +34,7 @@ namespace BoxIdDb
         string testerTableThisMonth;
         string testerTableLastMonth;
         DataTable dtOverall;
-        int limit = 100; //
+        int limit = 100;
         public int limit1 = 0;
         int limitls4a;
         int limitls12;
@@ -579,6 +579,11 @@ namespace BoxIdDb
                                         model = "BMS_0240";
                                         lot = VBStrings.Mid(serShort, 5, 3);
                                     }
+                                    else if (cmbModel.Text == "BMS_0314")
+                                    {
+                                        model = "BMS_0314";
+                                        lot = VBStrings.Mid(serShort, 2, 4);
+                                    }
                                 }
                                 else if (serLong.Length == 8) { model = "LA10"; lot = VBStrings.Mid(serShort, 5, 3); }
                                 else if (VBStrings.Mid(serLong, 6, 1) == "L") { model = "LS3L"; lot = VBStrings.Mid(serShort, 3, 3); }
@@ -668,6 +673,7 @@ namespace BoxIdDb
                                 case "LS3P":
                                 case "LMOD":
                                 case "BMS69":
+                                case "BMS_0314":
                                 case "BMS58":
                                 case "BMS57":
                                 case "BMS70":
@@ -782,6 +788,11 @@ namespace BoxIdDb
                                         model = "BMS69";
                                         lot = VBStrings.Mid(serShort, 3, 3);
                                     }
+                                    else if (cmbModel.Text == "BMS_0314")
+                                    {
+                                        model = "BMS_0314";
+                                        lot = VBStrings.Mid(serShort, 2, 4);
+                                    }
                                     else if (cmbModel.Text == "BMS70")
                                     {
                                         model = "BMS70";
@@ -830,7 +841,7 @@ namespace BoxIdDb
                         // If tester data exists, show it in the datagridview
                         if (dt2.Rows.Count != 0)
                         {
-                            if (cmbModel.Text == "BMS57" || cmbModel.Text == "BMS58" || cmbModel.Text == "LS3K" || cmbModel.Text == "LS3E" || cmbModel.Text == "LS3F" || cmbModel.Text == "LS3L" || cmbModel.Text == "LS3P" || cmbModel.Text == "LS4A" || cmbModel.Text == "BMS14" || cmbModel.Text == "BMS15")
+                            if (cmbModel.Text == "BMS57" || cmbModel.Text == "BMS58" || cmbModel.Text == "LS3K" || cmbModel.Text == "LS3E" || cmbModel.Text == "LS3F" || cmbModel.Text == "LS3L" || cmbModel.Text == "LS3P" || cmbModel.Text == "LS4A" || cmbModel.Text == "BMS14" || cmbModel.Text == "BMS15" || cmbModel.Text == "BMS_0314")
                             {
                                 if (cmbModel.Text == "LS3P")
                                 {
@@ -977,6 +988,7 @@ namespace BoxIdDb
                                 case "LS3P":
                                 case "LMOD":
                                 case "BMS69":
+                                case "BMS_0314":
                                 case "BMS58":
                                 case "BMS57":
                                 case "BMS70":
@@ -1092,6 +1104,11 @@ namespace BoxIdDb
                             tablekey = "bms_0240";
                             filterkey = "BMS_0240";
                         }
+                        else if (cmbModel.Text == "BMS_0314")
+                        {
+                            tablekey = "bms_0314";
+                            filterkey = "BMS_0314";
+                        }
                     }
                     if (VBStrings.Mid(serno, 6, 1) == "L") tablekey = "ls12_003l"; filterkey = "LS3L";
                     if (VBStrings.Left(serno, 1) == "M") tablekey = "ls12_003mod"; filterkey = "LMOD";
@@ -1203,7 +1220,7 @@ namespace BoxIdDb
                 if (m_model == "BMS69" || m_model == "BMS70" || m_model == "BMS58" || m_model == "BMS57" || m_model == "BMS14" || m_model == "BMS15")
 
                     dtpPrintDate.Value = DateTime.ParseExact(VBStrings.Mid(boxIdNew, 7, 6), "yyMMdd", CultureInfo.InvariantCulture);
-               else if (m_model == "BMS_0240")
+               else if (m_model == "BMS_0240"|| m_model == "BMS_0314")
 
                     dtpPrintDate.Value = DateTime.ParseExact(VBStrings.Mid(boxIdNew, 10, 6), "yyMMdd", CultureInfo.InvariantCulture);
                 else
@@ -1285,6 +1302,22 @@ namespace BoxIdDb
                 if (!string.IsNullOrEmpty(boxIdOld))
                 {
                     dateOld = DateTime.ParseExact(VBStrings.Mid(boxIdOld, 7, 6), "yyMMdd", CultureInfo.InvariantCulture);
+                    numberOld = long.Parse(VBStrings.Right(boxIdOld, 3));
+                }
+                if (dateOld != DateTime.Today)
+                {
+                    boxIdNew = m_model + "-" + DateTime.Today.ToString("yyMMdd") + "001";
+                }
+                else
+                {
+                    boxIdNew = m_model + "-" + DateTime.Today.ToString("yyMMdd") + (numberOld + 1).ToString("000");
+                }
+            }
+            else if(m_model == "BMS_0314")
+            {
+                if (boxIdOld != string.Empty)
+                {
+                    dateOld = DateTime.ParseExact(VBStrings.Mid(boxIdOld, 10, 6), "yyMMdd", CultureInfo.InvariantCulture);
                     numberOld = long.Parse(VBStrings.Right(boxIdOld, 3));
                 }
                 if (dateOld != DateTime.Today)
@@ -1606,5 +1639,6 @@ namespace BoxIdDb
         {
 
         }
+
     }
 }
