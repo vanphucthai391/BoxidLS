@@ -51,7 +51,6 @@ D:\GIT_NIDEC\DiepNguyen\NCVP\BoxId LS\MovieDB\obj\Debug\BoxIdDB.exe.manifest
 D:\GIT_NIDEC\DiepNguyen\NCVP\BoxId LS\MovieDB\obj\Debug\BoxIdDB.application
 D:\GIT_NIDEC\DiepNguyen\NCVP\BoxId LS\MovieDB\obj\Debug\BoxIdDB.FormLPD.resources
 D:\GIT_NIDEC\DiepNguyen\NCVP\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csprojResolveAssemblyReference.cache
-D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csprojResolveAssemblyReference.cache
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDB.exe
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDB.pdb
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\bin\Debug\Interop.Microsoft.Office.Core.dll
@@ -75,3 +74,6 @@ D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csproj.G
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDB.exe.manifest
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDB.application
 D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\Interop.LCC11.dll
+D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csprojAssemblyReference.cache
+D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csproj.CoreCompileInputs.cache
+D:\thaivanphuc\Git_nidecSHTP\BoxidLS\BoxId LS\MovieDB\obj\Debug\BoxIdDb.csproj.CopyComplete

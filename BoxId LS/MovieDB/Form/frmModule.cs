@@ -711,7 +711,6 @@ namespace BoxIdDb
                         DataTable dt1 = new DataTable();
                         ShSQL tf = new ShSQL();
                         tf.sqlDataAdapterFillDatatableFromTesterDb(sql, ref dt1);
-
                         if (dt1.Rows.Count <= 0)
                         {
                             if (sDate.Year.ToString() == "2015")
@@ -856,6 +855,19 @@ namespace BoxIdDb
                                         newrow["linepass"] = linepass;
                                         newrow["testtime"] = testtime;
                                     }
+                                    else if (dt2.Rows.Count == 2)
+                                    {
+                                        string process1 = dt2.Rows[0][1].ToString();
+                                        string process2 = dt2.Rows[1][1].ToString();
+
+                                        string linepass = dt2.Rows[0][2].ToString();
+                                        DateTime testtime = (DateTime)dt2.Rows[0][3];
+                                        if (process1 == "EN2-LVT" || process1 == "MOTOR" || process1 == "FINAL")
+                                            linepass = "FAIL";
+                                        newrow["process"] = process1+","+process2;
+                                        newrow["linepass"] = linepass;
+                                        newrow["testtime"] = testtime;
+                                    }
                                     else if (dt2.Rows.Count == 3)
                                     {
                                         string process = dt2.Rows[0][1].ToString();
@@ -870,12 +882,21 @@ namespace BoxIdDb
                                             resultlinepass = "PASS";
                                         if (linepass == "FAIL" || linepass2 == "FAIL" || linepass3 == "FAIL")
                                             resultlinepass = "FAIL";
-                                        DateTime testtime = (DateTime)dt2.Rows[0][3];
+                                        DateTime testtime3p= DateTime.MinValue;
+                                        foreach (DataRow row in dt2.Rows)
+                                        {
+                                            if (row[1].ToString() == "FINAL")
+                                            {
+                                                testtime3p = (DateTime)row[3];
+                                                break;
+                                            }
+                                            else testtime3p = (DateTime)dt2.Rows[0][3];
+                                        }
                                         //newrow["process"] = process;
                                         //newrow["linepass"] = linepass;
                                         newrow["process"] = resultprocess;
                                         newrow["linepass"] = resultlinepass;
-                                        newrow["testtime"] = testtime;
+                                        newrow["testtime"] = testtime3p;
                                     }
                                 }
                                 else if (cmbModel.Text == "LS4A")
@@ -1156,7 +1177,6 @@ namespace BoxIdDb
                 testerTableLastMonth = testerTableThisMonth;
             return filterkey;
         }
-
         // Issue new box id, register product serials, and save text file for barcode printing
         private void btnRegisterBoxId_Click(object sender, EventArgs e)
         {

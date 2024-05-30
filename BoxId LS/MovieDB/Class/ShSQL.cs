@@ -350,7 +350,6 @@ namespace BoxIdDb
                 string sql = "INSERT INTO product_serial(serialno, lot, fact, process, linepass, testtime, boxid, model) " +
                     "VALUES (:serialno, :lot, :fact, :process, :linepass, :testtime, :boxid, :model)";
                 NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-
                 command.Parameters.Add(new NpgsqlParameter("serialno", NpgsqlTypes.NpgsqlDbType.Varchar));
                 command.Parameters.Add(new NpgsqlParameter("lot", NpgsqlTypes.NpgsqlDbType.Varchar));
                 command.Parameters.Add(new NpgsqlParameter("fact", NpgsqlTypes.NpgsqlDbType.Varchar));
@@ -370,13 +369,12 @@ namespace BoxIdDb
                     command.Parameters[5].Value = DateTime.Parse(dt.Rows[i]["testtime"].ToString());
                     command.Parameters[6].Value = dt.Rows[i]["boxid"].ToString();
                     command.Parameters[7].Value = dt.Rows[i]["model"].ToString();
-
                     //　System.Diagnostics.Debug.Print(command.ToString());
                     res1 = command.ExecuteNonQuery();
-                    if (res1 == -1) res2 = true;
+                    if (res1 == -1) res2 = true;//có lỗi xảy ra
                 }
 
-                if (!res2)
+                if (!res2)//nếu không có lỗi thực hiện sau đó trả sqlMultipleInsertOverall=true;
                 {
                     transaction.Commit();
                     connection.Close();
